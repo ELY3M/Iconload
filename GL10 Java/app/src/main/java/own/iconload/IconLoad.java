@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.BitmapFactory.Options;
-import android.opengl.GLES20;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import java.io.File;
@@ -117,13 +116,13 @@ public class IconLoad {
         texturesLoaded = TextureOperations.invalidateTexture(gl, textures);
     }
 
-    public void draw(GL10 gl, int x, int y) {
+    public void draw(GL10 gl10, int x, int y) {
         Log.i(TAG, "draw");
-        gl.glEnable(GL10.GL_TEXTURE_2D);
-        gl.glBindTexture(GL10.GL_TEXTURE_2D, textures[0]);
-        ((GL11) gl).glTexParameteriv(GL10.GL_TEXTURE_2D, 35741, cropRect, 0);
-        ((GL11Ext) gl).glDrawTexiOES(x, y, 0, drawWidth, drawHeight);
-        gl.glDisable(GL10.GL_TEXTURE_2D);
+        gl10.glEnable(GL10.GL_TEXTURE_2D);
+        gl10.glBindTexture(GL10.GL_TEXTURE_2D, textures[0]);
+        ((GL11) gl10).glTexParameteriv(GL10.GL_TEXTURE_2D, 35741, cropRect, 0);
+        ((GL11Ext) gl10).glDrawTexiOES(x, y, 0, drawWidth, drawHeight);
+        gl10.glDisable(GL10.GL_TEXTURE_2D);
     }
 
 

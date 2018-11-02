@@ -1,7 +1,6 @@
 package own.iconload;
 
 
-import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 import android.opengl.GLU;
 import android.os.Bundle;
@@ -161,7 +160,7 @@ public class Main extends AppCompatActivity
         gl.glDisable(GL10.GL_DITHER);
         gl.glHint(GL10.GL_PERSPECTIVE_CORRECTION_HINT, GL10.GL_FASTEST);
         gl.glHint(GL10.GL_LINE_SMOOTH_HINT, GL10.GL_FASTEST);
-        //gl.glShadeModel(GL10.GL_FLAT);
+        gl.glShadeModel(GL10.GL_FLAT);
         gl.glDisable(GL10.GL_DEPTH_TEST);
         gl.glBlendFunc(GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA);
         int screenheight = this.getResources().getDisplayMetrics().heightPixels;
@@ -271,9 +270,9 @@ public class Main extends AppCompatActivity
 
 
 
-    public void onSurfaceChanged(GL10 gl, int width, int height) {
+    public void onSurfaceChanged(GL10 gl10, int width, int height) {
         StringBuilder stringBuilder;
-        lastKnownGL = gl;
+        lastKnownGL = gl10;
 
         stringBuilder = new StringBuilder();
         stringBuilder.append("onSurfaceChanged ");
@@ -283,7 +282,7 @@ public class Main extends AppCompatActivity
         Log.v(TAG, stringBuilder.toString());
 
         System.gc();
-        gl.glViewport(0, 0, width, height);
+        gl10.glViewport(0, 0, width, height);
 
         if (height != 0) {
             aspectratio = ((float)width) / ((float)height);
@@ -303,9 +302,9 @@ public class Main extends AppCompatActivity
         Log.d(TAG, stringBuilder.toString());
 
         float ratio = ((float) width) / ((float) height);
-        gl.glMatrixMode(GL10.GL_PROJECTION);
-        gl.glLoadIdentity();
-        GLU.gluPerspective(gl, 45.0f, ratio, 1.0f, 1000.0f);
+        gl10.glMatrixMode(GL10.GL_PROJECTION);
+        gl10.glLoadIdentity();
+        GLU.gluPerspective(gl10, 45.0f, ratio, 1.0f, 1000.0f);
 
         Log.d(TAG, "Ratio set to "+ratio);
         Log.i(TAG, "Surface Changed Rerender");
