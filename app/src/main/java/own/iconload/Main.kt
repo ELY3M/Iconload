@@ -281,7 +281,6 @@ class Main : AppCompatActivity(), GLSurfaceView.Renderer, View.OnTouchListener,
         gl10.glMatrixMode(GL10.GL_PROJECTION)
         gl10.glLoadIdentity()
         GLU.gluPerspective(gl10, 45.0f, ratio, 1.0f, 1000.0f)
-
         Log.d(TAG, "Ratio set to $ratio")
         Log.i(TAG, "Surface Changed Rerender")
 
